@@ -19,4 +19,4 @@ const UsersList: React.FC<UsersListProps> = ({ users, onDelete }) => {
   );
 };
 
-export default UsersList;
+export default React.memo(UsersList);
