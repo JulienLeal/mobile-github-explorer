@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   display: flex;
   background: red;
   border-radius: 7px;
@@ -21,6 +21,22 @@ export const UsernameText = styled.Text`
   color: #888;
   font-family: "Nunito";
 `;
+
+export const DeleteIcon = styled.Image`
+  height: 15px;
+  width: 15px;
+`;
+
+export const DeleteTouchable = styled.TouchableOpacity`
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 export const VisitButton = styled.Button`
   width: 100px;

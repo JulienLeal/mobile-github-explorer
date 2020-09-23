@@ -5,7 +5,12 @@ import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
 import getUsers, { User, UsersResponse } from "./services/users.service";
 import UsersList from "./components/UsersList/UsersList";
 
-import { Container, SearchUserInput, ErrorMessage } from "./App.styles";
+import {
+  Container,
+  SearchUserInput,
+  ErrorMessage,
+  NotDataMessage,
+} from "./App.styles";
 import Search from "./components/Search/Search";
 
 export default function App() {
@@ -40,6 +45,8 @@ export default function App() {
 
       return () => clearTimeout(debounceSearch);
     }
+
+    setUsers([]);
   }, [search]);
 
   /**
@@ -72,8 +79,8 @@ export default function App() {
   return (
     <Container>
       <Search onChange={handleInputChange} />
-      {error ? (
-        <ErrorMessage>{error}</ErrorMessage>
+      {!users.length ? (
+        <NotDataMessage>Nenhum usuário a ser exibido</NotDataMessage>
       ) : (
         <UsersList users={users} onDelete={handleDeleteUser} />
       )}
