@@ -12,12 +12,14 @@ export const Input = styled.TextInput`
   font-size: 16px;
 `;
 
-export const SearchIcon = styled.Image`
+export const SearchIconContainer = styled.View`
   position: absolute;
   left: 0;
   margin: 10px;
   elevation: 1;
 `;
+
+export const SearchIcon = styled.Image``;
 
 export const Container = styled.View`
   width: 100%;
@@ -26,4 +28,4 @@ export const Container = styled.View`
   flex-direction: row;
   align-items: center;
   margin-top: 32px;
-`
+`;

@@ -1,5 +1,10 @@
 import React from "react";
-import { Container, Input, SearchIcon } from "./SearchInput.styles";
+import {
+  Container,
+  Input,
+  SearchIcon,
+  SearchIconContainer,
+} from "./SearchInput.styles";
 
 import SearchImage from "../../assets/icons/search.png";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
@@ -11,7 +16,9 @@ interface SearchInputProps {
 const SearchInput: React.FC<SearchInputProps> = ({ onChange }) => {
   return (
     <Container>
-      <SearchIcon source={SearchImage} />
+      <SearchIconContainer>
+        <SearchIcon source={SearchImage} />
+      </SearchIconContainer>
       <Input onChange={onChange} />
     </Container>
   );
