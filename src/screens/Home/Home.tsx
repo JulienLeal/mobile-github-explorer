@@ -10,6 +10,12 @@ const Home: React.FC = () => {
   const [search, setSearch] = useState<string>();
   const [users, setUsers] = useState<User[]>([]);
 
+  /**
+   * This hook ensures 
+   * that it will call 
+   * the event after 400ms 
+   * after the user stops typing
+   */
   useDebounce(() => {
     if (search) {
       searchUsers(search);
