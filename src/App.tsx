@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { registerRootComponent } from "expo";
+import { AppLoading, registerRootComponent } from "expo";
+import { useFonts, Nunito_400Regular } from "@expo-google-fonts/nunito";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
 import getUsers, { User, UsersResponse } from "./services/users.service";
 import UsersList from "./components/UsersList/UsersList";
 
 import { Container, SearchUserInput, ErrorMessage } from "./App.styles";
+import Search from "./components/Search/Search";
 
 export default function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState<string>();
   const [error, setError] = useState<string>();
+  const [fontsLoaded] = useFonts({
+    Nunito: Nunito_400Regular,
+  });
 
   /**
    * This function is responsible
    * for call getUsers service
    * and set response on state
-   * 
-   * @param text 
+   *
+   * @param text
    */
   async function searchUsers(text: string) {
     try {
       const usersResponse: UsersResponse = await getUsers(text);
 
       setUsers(usersResponse?.items);
+      setError("");
     } catch (error) {
       setError(error?.message);
     }
   }
-
 
   useEffect(() => {
     if (search) {
@@ -50,7 +55,7 @@ export default function App() {
   /**
    * This handler is responsible
    * for remove deleted user from state
-   * @param user 
+   * @param user
    */
   function handleDeleteUser(user: User): void {
     const usersWithoutDeleted = users.filter(
@@ -60,9 +65,13 @@ export default function App() {
     setUsers(usersWithoutDeleted);
   }
 
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <Container>
-      <SearchUserInput onChange={handleInputChange} keyboardType="default" />
+      <Search onChange={handleInputChange} />
       {error ? (
         <ErrorMessage>{error}</ErrorMessage>
       ) : (

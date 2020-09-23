@@ -6,7 +6,7 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
-  "main": "src/Playground.tsx",
+  "main": "src/App.tsx",
   "dependencies": {
     "@expo-google-fonts/nunito": "^0.1.0",
     "axios": "^0.20.0",
