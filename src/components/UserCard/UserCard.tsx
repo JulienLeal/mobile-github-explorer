@@ -1,7 +1,13 @@
 import React from "react";
 import { Alert, Linking } from "react-native";
 import { User } from "../../services/users.service";
-import { Container, UsernameText, ProfileImage, DeleteTouchable, DeleteIcon } from "./UserCard.styles";
+import {
+  Container,
+  UsernameText,
+  ProfileImage,
+  DeleteTouchable,
+  DeleteIcon,
+} from "./UserCard.styles";
 import CancelImage from "../../assets/icons/cancel.png";
 
 interface UserCardProps {

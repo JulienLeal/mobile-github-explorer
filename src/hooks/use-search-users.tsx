@@ -2,6 +2,12 @@ import { useState } from "react";
 import getUsers, { User, UsersResponse } from "../services/users.service";
 import { useDebounce } from "./use-debounce";
 
+/**
+ * This hook call getUsers service
+ * using debounce
+ * 
+ * @param search 
+ */
 export function useSearchUsers(
   search: string | undefined
 ): [User[], React.Dispatch<React.SetStateAction<User[]>>] {
