@@ -2,22 +2,35 @@ import React, { useState } from "react";
 import { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
 import Search from "../../components/Search/Search";
 import UsersList from "../../components/UsersList/UsersList";
-import { useSearchUsers } from "../../hooks/use-search-users";
-import { User } from "../../services/users.service";
+import { useDebounce } from "../../hooks/use-debounce";
+import getUsers, { User, UsersResponse } from "../../services/users.service";
 import { Container, NotDataMessage } from "./Home.styles";
 
 const Home: React.FC = () => {
   const [search, setSearch] = useState<string>();
-  const [users, setUsers] = useSearchUsers(search);
+  const [users, setUsers] = useState<User[]>([]);
+
+  useDebounce(() => {
+    if (search) {
+      searchUsers(search);
+    }
+  }, [search]);
 
   /**
-   * This handler is responsible
-   * for set input text
+   * This function is responsible
+   * for call getUsers service
+   * and set response on state
+   *
+   * @param text
    */
-  async function handleInputChange({
-    nativeEvent,
-  }: NativeSyntheticEvent<TextInputChangeEventData>): Promise<void> {
-    setSearch(nativeEvent.text);
+  async function searchUsers(text: string) {
+    try {
+      const usersResponse: UsersResponse = await getUsers(text);
+
+      setUsers(usersResponse?.items);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   /**
@@ -33,9 +46,19 @@ const Home: React.FC = () => {
     setUsers(usersWithoutDeleted);
   }
 
+  /**
+   * This handler is responsible
+   * for set input text
+   */
+  async function handleSearchInputChange({
+    nativeEvent,
+  }: NativeSyntheticEvent<TextInputChangeEventData>): Promise<void> {
+    setSearch(nativeEvent.text);
+  }
+
   return (
     <Container>
-      <Search onChange={handleInputChange} />
+      <Search onChange={handleSearchInputChange} />
       {!users.length ? (
         <NotDataMessage>Nenhum usuário a ser exibido</NotDataMessage>
       ) : (
