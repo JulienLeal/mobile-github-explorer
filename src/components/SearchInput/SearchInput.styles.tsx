@@ -19,7 +19,6 @@ export const SearchIconContainer = styled.View`
   elevation: 1;
 `;
 
-export const SearchIcon = styled.Image``;
 
 export const Container = styled.View`
   width: 100%;
