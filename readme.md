@@ -1,8 +1,5 @@
 <h1 align="center">Github explorer</h1>
 <p align="center">Aplicativo mobile que possibilita a busca por desenvolvedores do mundo open-source</p>
-<br/>
-<br/>
-
 <div align="center">
   <img src="https://img.shields.io/static/v1?label=Expo&message=~38.0.8&color=000020&logo=expo&style=for-the-badge"/>
   <img src="https://img.shields.io/static/v1?label=React&message=~16.11.0&color=61DAFB&logo=react&style=for-the-badge" />
@@ -20,8 +17,6 @@
 ## Pré-requisitos
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas: Emulador (android ou ios),
 [Git](https://git-scm.com) e [Node.js](https://nodejs.org/en/). Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
-
-<br/>
 
 ## Rodando o aplicativo
 ```bash
