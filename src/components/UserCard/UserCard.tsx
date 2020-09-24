@@ -4,10 +4,11 @@ import { User } from "../../services/users.service";
 import {
   Container,
   UsernameText,
-  ButtonsSection,
-  DeleteButton,
-  VisitButton,
+  ProfileImage,
+  DeleteTouchable,
+  DeleteIcon,
 } from "./UserCard.styles";
+import CancelImage from "../../assets/icons/cancel.png";
 
 interface UserCardProps {
   user: User;
@@ -30,12 +31,12 @@ const UserCard: React.FC<UserCardProps> = ({ user, onDelete }) => {
   }
 
   return (
-    <Container>
+    <Container onPress={handleVisitPress}>
+      <ProfileImage source={{ uri: user.avatar_url }} />
       <UsernameText>{user.login}</UsernameText>
-      <ButtonsSection>
-        <VisitButton title="Visitar perfil" onPress={handleVisitPress} />
-        <DeleteButton title="Remover" onPress={() => onDelete(user)} />
-      </ButtonsSection>
+      <DeleteTouchable onPress={() => onDelete(user)}>
+        <DeleteIcon source={CancelImage} />
+      </DeleteTouchable>
     </Container>
   );
 };

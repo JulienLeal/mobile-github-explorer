@@ -38,7 +38,7 @@ export interface UsersResponse {
  */
 export default async function getUsers(
   query: string,
-  perPage = 10,
+  perPage = 30,
   page = 0
 ): Promise<UsersResponse> {
   const { data }: AxiosResponse<UsersResponse> = await api.get(
